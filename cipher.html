@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-image: url(bgImage.jpg);
+        }
+
+        #game-container {
+            max-width: 400px;
+            margin: auto;
+            font-size: large;
+            color: rgb(223, 82, 82);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content horizontally */
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #binaryMessage {
+            margin-top: 20px;
+        }
+
+        #head {
+            color: white;
+            font-size: 25px;
+        }
+
+        #userInput {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid rgb(223, 82, 82);
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #checkButton {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: rgb(223, 82, 82);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #checkButton:hover {
+            background-color: #c4416b; /* Change the color on hover */
+        }
+
+        h2 {
+            color: white;
+        }
+
+        #content {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h2>Binary to Text Converter Game</h2>
+    <div id="content">
+        <p id="head">Decrypt the binary message by entering the correct text:</p>
+        <p id="binaryMessage">Binary Message: <span>01100101 01101101 01110000 01110100 01111001 00100000 01100111 01100001 01101100 01101100 01100001 01110010 01111001</span></p>
+        <input type="text" id="userInput" placeholder="Enter text">
+        <button id="checkButton" onclick="checkText()">Check</button>
+        <p id="result"></p>
+    </div>
+</div>
+
+<script>
+    const binaryMessage = "01100101 01101101 01110000 01110100 01111001 00100000 01100111 01100001 01101100 01101100 01100001 01110010 01111001";
+
+    function btt(binary) {
+        const binaryArray = binary.split(' ');
+        let text = '';
+        for (let i = 0; i < binaryArray.length; i++) {
+            text += String.fromCharCode(parseInt(binaryArray[i], 2));
+        }
+        return text;
+    }
+
+    function checkText() {
+        const userInput = document.getElementById('userInput').value;
+        const decryptedText = btt(binaryMessage);
+
+        if (userInput === decryptedText) {
+            document.getElementById('result').innerHTML = "Congrats! The decrypted message is: " + decryptedText;
+        } else {
+            document.getElementById('result').innerHTML = "Sorry, try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
